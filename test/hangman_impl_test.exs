@@ -68,7 +68,11 @@ defmodule HangmanImplGameTest do
       ["a", :bad_guess, 6, ["_", "_", "_", "_", "_"], ["a"]],
       ["a", :already_used, 6, ["_", "_", "_", "_", "_"], ["a"]],
       ["e", :good_guess, 6, ["_", "e", "_", "_", "_"], ["a", "e"]],
-      ["x", :bad_guess, 5, ["_", "e", "_", "_", "_"], ["a", "e", "x"]]
+      ["x", :bad_guess, 5, ["_", "e", "_", "_", "_"], ["a", "e", "x"]],
+      ["l", :good_guess, 5, ["_", "e", "l", "l", "_"], ["a", "e", "l", "x"]],
+      ["o", :good_guess, 5, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x"]],
+      ["y", :bad_guess, 4, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x", "y"]],
+      ["h", :won, 4, ["h", "e", "l", "l", "o"], ["a", "e", "h", "l", "o", "x", "y"]]
     ]
     |> test_sequence_of_moves()
   end
