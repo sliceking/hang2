@@ -62,7 +62,26 @@ defmodule HangmanImplGameTest do
   end
 
   # hello
-  test "can handle a sequence of moves" do
+  test "can handle a losing game" do
+    [
+      # guess | state     turns  letters                     used
+      ["a", :bad_guess, 6, ["_", "_", "_", "_", "_"], ["a"]],
+      ["a", :already_used, 6, ["_", "_", "_", "_", "_"], ["a"]],
+      ["e", :good_guess, 6, ["_", "e", "_", "_", "_"], ["a", "e"]],
+      ["x", :bad_guess, 5, ["_", "e", "_", "_", "_"], ["a", "e", "x"]],
+      ["l", :good_guess, 5, ["_", "e", "l", "l", "_"], ["a", "e", "l", "x"]],
+      ["o", :good_guess, 5, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x"]],
+      ["y", :bad_guess, 4, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x", "y"]],
+      ["n", :bad_guess, 3, ["_", "e", "l", "l", "o"], ["a", "e", "l", "n", "o", "x", "y"]],
+      ["q", :bad_guess, 2, ["_", "e", "l", "l", "o"], ["a", "e", "l", "n", "o", "q", "x", "y"]],
+      ["p", :bad_guess, 1, ["_", "e", "l", "l", "o"], ["a", "e", "l", "n", "o", "p", "q", "x", "y"]],
+      ["z", :lost, 1, ["h", "e", "l", "l", "o"], ["a", "e", "l", "n", "o", "p", "q", "x", "y", "z"]]
+    ]
+    |> test_sequence_of_moves()
+  end
+
+  # hello
+  test "can handle a winning game" do
     [
       # guess | state     turns  letters                     used
       ["a", :bad_guess, 6, ["_", "_", "_", "_", "_"], ["a"]],
